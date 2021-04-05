@@ -14,7 +14,8 @@ const Street = ({ state, firstTime = false }) => {
   const options = {
     default: {
       short: 'Do nothing',
-      description: 'Crippled by indecision you stand, frozen.',
+      description:
+        'Crippled by indecision you stand, frozen, yet baking in the sun.',
     },
     rubble: {
       short: 'Explore the collapsed buildings',
@@ -24,9 +25,9 @@ const Street = ({ state, firstTime = false }) => {
     ...(!state?.gotLibrary
       ? {
           condemned: {
-            short: 'Go to the condemned building',
+            short: 'Go to the boarded building',
             description:
-              'Never one to listen to the warnings of others, you head for the condemned building.',
+              "Never one to listen to the warnings of others, you head for the building that's boarded up.",
           },
         }
       : {}),
@@ -78,7 +79,7 @@ const Street = ({ state, firstTime = false }) => {
               The settlement is made up of a single street. On your left, most
               of the buildings have collapsed through decades of neglect. One is
               still standing in the middle of the row, but it's boarded up and
-              has a large condemned sign. On your right there appears to be a
+              covered in warning notices. On your right there appears to be a
               bar, a hotel and a general store.
             </p>
           ) : (

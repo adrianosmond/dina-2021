@@ -1,6 +1,7 @@
-import useChoice from 'hooks/useChoice';
 import { useState } from 'react';
+import useChoice from 'hooks/useChoice';
 import Choice from './Choice';
+import CombinationLock from './CombinationLock';
 import Heading from './Heading';
 import Library from './Library';
 import Street from './Street';
@@ -25,20 +26,27 @@ const CondemnedBuilding = ({ state }) => {
   const [option, updateOption] = useChoice();
   return (
     <>
-      <Heading step={state.step} title="The condemned building" />
+      <Heading step={state.step} title="The boarded building" />
       <p className="mt-2 sm:mt-4">
-        You arrive at the condemned building. [TODO]
+        The building looks even worse from close up. The warnings if anything
+        aren't strong enough. You think about removing the boards and going in
+        but then you notice a large combination lock that's doing an effective
+        job of keeping trespassers out. You fiddle shake the lock and pull on
+        the mechanism which, as you suspected it would, confirms that it's
+        indeed locked. On the rear side of the lock there's a label with the
+        word "Library" on it.
         <span className="block mt-4">
-          <input
-            type="number"
+          <CombinationLock
             value={code}
-            onChange={(e) => setCode(e.target.value)}
-            maxLength={3}
-            min={0}
-            max={999}
+            onChange={(newCode) => setCode(newCode)}
           />
         </span>
       </p>
+      {code === 817 ? (
+        <p className="mt-6 sm:mt-8">You hear a click ({code}) [TODO]</p>
+      ) : (
+        <p className="mt-6 sm:mt-8">Nothing happens ({code}) [TODO]</p>
+      )}
       <p className="mt-6 sm:mt-8">
         <Choice options={options} value={option} onChange={updateOption} />
       </p>

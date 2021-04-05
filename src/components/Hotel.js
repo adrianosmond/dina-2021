@@ -18,7 +18,15 @@ const Hotel = ({ state, justEntered = false }) => {
           },
         }
       : {}),
-    ...(!state.gotHotelKey
+    ...(!state.askedLeave
+      ? {
+          askLeave: {
+            short: 'Make her leave [TODO]',
+            description: '[TODO]',
+          },
+        }
+      : {}),
+    ...(state.gotHotelKey
       ? {
           enterCloset: {
             short: 'Enter the maintenance closet',
@@ -61,15 +69,21 @@ const Hotel = ({ state, justEntered = false }) => {
       </p>
       {option === 'default' && (
         <>
-          <Street state={{ ...state, step: state.step + 1 }} />
+          <Street
+            state={{
+              ...state,
+              step: state.step + 1,
+              receptionUnmanned: undefined,
+            }}
+          />
         </>
       )}
       {option === 'askRoom' && (
         <>
           <p className="mt-6 sm:mt-8">
-            'I don't mean to cause offence', the owner says,
+            "I don"t mean to cause offence", the owner says,
             <br />
-            'But do you have any money?' [TODO]
+            "But do you have any money?" [TODO]
           </p>
           <Hotel
             state={{
@@ -80,19 +94,20 @@ const Hotel = ({ state, justEntered = false }) => {
           />
         </>
       )}
-      {option === 'useHotelKey' && (
+      {option === 'askLeave' && (
         <>
           <p className="mt-6 sm:mt-8">The woman leaves. [TODO]</p>
           <Hotel
             state={{
               ...state,
               step: state.step + 1,
-              lostHotelKey: state.step,
+              askedLeave: state.step,
+              receptionUnmanned: state.step,
             }}
           />
         </>
       )}
-      {option === 'enterCloset' && !state.lostHotelKey && (
+      {option === 'enterCloset' && !state.receptionUnmanned && (
         <>
           <p className="mt-6 sm:mt-8">The woman stops you. [TODO]</p>
           <Hotel
@@ -103,24 +118,42 @@ const Hotel = ({ state, justEntered = false }) => {
           />
         </>
       )}
-      {option === 'enterCloset' && state.lostHotelKey && (
+      {option === 'enterCloset' && state.receptionUnmanned && (
         <>
           <p className="mt-6 sm:mt-8">
             You try the key that you found in the door and it fits. You turn the
             key, open the door and find yourself looking at the janitor's
             closet. There are some old rags, an old boiler suit and a mop that
-            looks like it hasn't been used in at least 10 years. What a waste,
-            you think to yourself, but just as you're about to something
-            glistens off a dark object. You reach for it and find a metal
-            detector. You flick the power switch and a couple of LEDs light up.
-            This might come in handy, you think to yourself. You grab it, close
-            the door behind you and make a swift exit before the receptionist
-            returns.
+            looks like it hasn't been used in at least 10 years, but there's no
+            water to be seen. Just as you're leaving your eye is drawn to a
+            shelf with 4 combination locks and an old solar-powered Casio pocket
+            calculator.
+          </p>
+          <p className="mt-6 sm:mt-8">
+            Each lock is in its open position and when you turn them over you
+            see that each has a label stuck on the back. You make a note of the
+            combination and label of each lock:
+          </p>
+          <p className="mt-6 sm:mt-8 ml-4">
+            <span className="font-mono">808</span>: Bob
+            <br />
+            <span className="font-mono">379</span>: Glen
+            <br />
+            <span className="font-mono">537</span>: Leslie
+            <br />
+            <span className="font-mono">345</span>: Sheila
+            <br />
+          </p>
+          <p className="mt-6 sm:mt-8">
+            Unsure of how much time you have before the receptionist returns you
+            think it best to get out of there as quickly as possible. You return
+            to the street.
           </p>
           <Street
             state={{
               ...state,
               step: state.step + 2,
+              receptionUnmanned: undefined,
             }}
           />
         </>
