@@ -1,34 +1,33 @@
 import useChoice from 'hooks/useChoice';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import Choice from './Choice';
+import Heading from './Heading';
 import Library from './Library';
 import Street from './Street';
 
 const CondemnedBuilding = ({ state }) => {
-  const [code, setCode] = useState(903);
-  const options = useMemo(
-    () => ({
-      default: {
-        short: 'Leave',
-        description: 'TODO: Description',
-      },
-      ...(code === '817'
-        ? {
-            enter: {
-              short: 'Enter',
-              description:
-                "'What's the unlocking a padlock if you don't see what lies behind it?', you think to yourself",
-            },
-          }
-        : {}),
-    }),
-    [code],
-  );
+  const [code, setCode] = useState(state.padlock);
+  const options = {
+    default: {
+      short: 'Leave',
+      description: 'You leave. TODO: Description',
+    },
+    ...(code === '817'
+      ? {
+          enter: {
+            short: 'Enter',
+            description:
+              "'What's the unlocking a padlock if you don't see what lies behind it?', you think to yourself",
+          },
+        }
+      : {}),
+  };
   const [option, updateOption] = useChoice();
   return (
     <>
-      <p className="mt-6 sm:mt-8">
-        You arrive at the condemned building. [TODO: DESCRIPTIVE TEXT]
+      <Heading step={state.step} title="The condemned building" />
+      <p className="mt-2 sm:mt-4">
+        You arrive at the condemned building. [TODO]
         <span className="block mt-4">
           <input
             type="number"
@@ -45,10 +44,8 @@ const CondemnedBuilding = ({ state }) => {
       </p>
       {option === 'default' && (
         <>
-          <p className="mt-6 sm:mt-8">
-            You go back to the street. [TODO: DESCRIPTIVE TEXT]
-          </p>
-          <Street state={{ ...state, step: state.step + 1 }} />
+          <p className="mt-6 sm:mt-8">You go back to the street. [TODO]</p>
+          <Street state={{ ...state, step: state.step + 1, padlock: code }} />
         </>
       )}
       {option === 'enter' && (
@@ -56,9 +53,15 @@ const CondemnedBuilding = ({ state }) => {
           <p className="mt-6 sm:mt-8">
             You slide the lock from the chain and push on the door. Nothing
             happens. You push harder, but still nothing happens. You push with
-            all of your bodyweight and the door crashes open
+            all of your bodyweight and the door crashes open.
           </p>
-          <Library state={{ ...state, step: state.step + 1 }} />
+          <Library
+            state={{
+              ...state,
+              step: state.step + 1,
+              gotLibrary: state.step,
+            }}
+          />
         </>
       )}
     </>

@@ -1,6 +1,8 @@
 const Choice = ({ options, value = 'default', onChange }) => (
-  <span className="relative inline border-b-2 border-black">
-    <span>{options[value].description}</span>
+  <span className="relative block">
+    <span className="border-b-2 border-black">
+      {options[value].description}
+    </span>
     <select
       className="absolute opacity-0 inset-0 w-full"
       value={value}
