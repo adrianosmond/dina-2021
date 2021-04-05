@@ -3,10 +3,21 @@
 @tailwind utilities;
 
 body {
+  background-color: #FDEBD0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Noto Serif', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@media (min-width: 40em) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 60em) {
+  html {
+    font-size: 20px;
+  }
 }
