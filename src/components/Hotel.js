@@ -8,26 +8,17 @@ const Hotel = ({ state, justEntered = false }) => {
   const options = {
     default: {
       short: 'Leave',
-      description: 'You leave. TODO: DESCRIPTION',
+      description: 'You leave. [TODO]',
     },
-    ...(!state.askedRoom && !state.lostHotelKey
+    ...(!state.askedRoom
       ? {
           askRoom: {
             short: 'Ask for a room',
-            description: "'Can I get a room?' You ask.",
+            description: '"Can I get a room?" You ask.',
           },
         }
       : {}),
-    ...(state.gotHotelKey && !state.lostHotelKey
-      ? {
-          useHotelKey: {
-            short: 'Use the hotel key',
-            description:
-              "'I have the key for room 302. I'm just going up for a sleep', you say with as much confidence as you can muster.",
-          },
-        }
-      : {}),
-    ...(!state.gotMetalDetector
+    ...(!state.gotHotelKey
       ? {
           enterCloset: {
             short: 'Enter the maintenance closet',
@@ -43,23 +34,33 @@ const Hotel = ({ state, justEntered = false }) => {
         <>
           <Heading step={state.step} title="The hotel" />
           <p className="mt-2 sm:mt-4">
-            You enter the hotel. A maintenance closet is to the left of
-            reception. [TODO]
+            A bell rings as you open the door. Your first impression of the
+            hotel is that it looks like it looks a bit worse for wear, though
+            you suppose the hotel could say the same about you. The paint on the
+            walls is cracking in the corners and there are darker squares that
+            show where paintings used to hang. A strange smell hangs in the air.
+            The entrance hall isn't too big. There's a small, empty reception
+            desk with a door behind leading to what you presume is the staff
+            area. To the left of the desk is a door with a sign saying
+            "Maintenance" on it. To the right is a staircase leading up to the
+            rooms.
           </p>
         </>
       )}
-      {justEntered && !state.lostHotelKey && (
-        <p className="mt-6 sm:mt-8">A woman stands behind reception. [TODO]</p>
-      )}
-      {justEntered && state.lostHotelKey && (
-        <p className="mt-6 sm:mt-8">There is nobody in sight. [TODO]</p>
+      {justEntered && (
+        <p className="mt-6 sm:mt-8">
+          Having heard the bell, a woman comes out of the door behind the
+          reception desk. She looks you up and down with what you suspect are
+          judgemental eyes.
+          <br />
+          "Can I help you?", she asks in quite a snobbish tone.
+        </p>
       )}
       <p className="mt-6 sm:mt-8">
         <Choice options={options} value={option} onChange={updateOption} />
       </p>
       {option === 'default' && (
         <>
-          <p className="mt-6 sm:mt-8">You leave the hotel. [TODO]</p>
           <Street state={{ ...state, step: state.step + 1 }} />
         </>
       )}
@@ -120,7 +121,6 @@ const Hotel = ({ state, justEntered = false }) => {
             state={{
               ...state,
               step: state.step + 2,
-              gotMetalDetector: state.step,
             }}
           />
         </>

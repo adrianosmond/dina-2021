@@ -14,7 +14,7 @@ const Street = ({ state, firstTime = false }) => {
   const options = {
     default: {
       short: 'Do nothing',
-      description: 'Crippled by indecision you stand frozen.',
+      description: 'Crippled by indecision you stand, frozen.',
     },
     rubble: {
       short: 'Explore the collapsed buildings',

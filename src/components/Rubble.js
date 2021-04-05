@@ -37,14 +37,6 @@ const Rubble = ({ state, justEntered = false, movement = '' }) => {
           },
         }
       : {}),
-    ...(state.gotMetalDetector && !state.gotRing
-      ? {
-          searchWithDetector: {
-            short: 'Use the metal detector to search the rubble',
-            description: 'You search [TODO]',
-          },
-        }
-      : {}),
   };
 
   return (
@@ -94,68 +86,40 @@ const Rubble = ({ state, justEntered = false, movement = '' }) => {
           movement={`${movement}D`}
         />
       )}
-      {option === 'search' && movement === '' && (
+      {option === 'search' && movement === 'LDLLUR' && (
         <>
+          <p className="mt-6 sm:mt-8">
+            You aren't sure why, but this time one particular rock stands out to
+            you. It's not really any different to all of the other thousands of
+            rocks but you just have a feeling about it, so it's the first one
+            that you pick up. Underneath it you find a small key.
+          </p>
           <p className="mt-6 sm:mt-8">
             The search isn't the most effective. For every few stones that you
             clear, new ones roll down to fill the hole you created. Seeing that
             going directly down isn't working you try a wider but shallower
             search. Just as you're about to give up your hand comes into contact
-            with something unusual. It's not plastic but it's not fabric either.
-            You pull on it and with a rip a piece of it comes free. It appears
-            to be a piece of an old raincoat, back from years ago when it still
-            used to rain in these parts.
+            with something that sharp and you recoil. Blood drips from your
+            finger
           </p>
           <p className="mt-6 sm:mt-8">
-            Excited by your discovery you clear the rubble around the rest of
-            the coat and manage to free it from the rocks that were keeping it
-            down. It's badly ripped and wouldn't do much good as clothing any
-            more, but just before you discard it you notice something sticking
-            out of the pocket - a letter. Carefully you take it out, worried
-            that the paper will turn to dust in your hands. It reads as follows:
-          </p>
-          <p className="mt-6 sm:mt-8 ml-4">
-            Lover.
-            <br />
-            Don't stop.
-            <br />
-            Look for me.
-            <br />
-            Leave no stone unturned.
-            <br />
-            Until you find me.
-            <br />
-            Remember me.
-            <br />
-          </p>
-          <p className="mt-6 sm:mt-8">
-            It's a moving poem. You wonder if they did find each other. Based on
-            the fact that the letter was in the rubble you don't think the
-            chances look too good.
+            Carefully you excavate further, closer to the sharp object and
+            notice that it's a shard of glass. As you move more rocks out of the
+            way you find more glass and then you spot what looks like the corner
+            of a piece of paper. After another 30 seconds you've freed it and
+            you bring it up to the light for inspection. It's an old photo of a
+            woman.
           </p>
           <Rubble
             state={{
               ...state,
               step: state.step + 2,
+              gotPhoto: true,
             }}
           />
         </>
       )}
-      {option === 'search' && movement === 'LDLLUR' && (
-        <>
-          <p className="mt-6 sm:mt-8">
-            You dig down into the rubble with your hands and find a small key.
-            [TODO]
-          </p>
-          <Rubble
-            state={{
-              ...state,
-              step: state.step + 2,
-            }}
-          />
-        </>
-      )}
-      {option === 'search' && movement !== '' && movement !== 'LDLLUR' && (
+      {option === 'search' && movement !== 'LDLLUR' && (
         <>
           <p className="mt-6 sm:mt-8">
             You dig down into the rubble with your hands but find nothing.
@@ -164,18 +128,6 @@ const Rubble = ({ state, justEntered = false, movement = '' }) => {
             state={{
               ...state,
               step: state.step + 2,
-            }}
-          />
-        </>
-      )}
-      {option === 'searchWithDetector' && (
-        <>
-          <p className="mt-6 sm:mt-8">You find a golden ring. [TODO]</p>
-          <Street
-            state={{
-              ...state,
-              step: state.step + 5,
-              gotRing: state.step,
             }}
           />
         </>
