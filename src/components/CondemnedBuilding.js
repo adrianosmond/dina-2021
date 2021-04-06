@@ -10,15 +10,15 @@ const CondemnedBuilding = ({ state }) => {
   const [code, setCode] = useState(state.padlock);
   const options = {
     default: {
-      short: 'Leave',
-      description: 'You leave. TODO: Description',
+      short: 'Leave the building',
+      description: 'Unsure of what to do next, you return to the street.',
     },
-    ...(code === '817'
+    ...(code === 817
       ? {
           enter: {
-            short: 'Enter',
+            short: 'Enter the library',
             description:
-              "'What's the unlocking a padlock if you don't see what lies behind it?', you think to yourself",
+              '"What\'s the point of unlocking a padlock if you don\'t see what lies behind it?", you think to yourself.',
           },
         }
       : {}),
@@ -43,25 +43,31 @@ const CondemnedBuilding = ({ state }) => {
         </span>
       </p>
       {code === 817 ? (
-        <p className="mt-6 sm:mt-8">You hear a click ({code}) [TODO]</p>
+        <p className="mt-6 sm:mt-8">
+          As you finish setting the third digit, you think you feel move in the
+          lock and your heart skips a beat. You pull at the top of the lock and
+          sure enough it opens.
+        </p>
       ) : (
-        <p className="mt-6 sm:mt-8">Nothing happens ({code}) [TODO]</p>
+        <p className="mt-6 sm:mt-8">
+          You pull expectantly on the lock mechanism, but it stays shut.
+        </p>
       )}
       <p className="mt-6 sm:mt-8">
         <Choice options={options} value={option} onChange={updateOption} />
       </p>
       {option === 'default' && (
         <>
-          <p className="mt-6 sm:mt-8">You go back to the street. [TODO]</p>
           <Street state={{ ...state, step: state.step + 1, padlock: code }} />
         </>
       )}
       {option === 'enter' && (
         <>
           <p className="mt-6 sm:mt-8">
-            You slide the lock from the chain and push on the door. Nothing
-            happens. You push harder, but still nothing happens. You push with
-            all of your bodyweight and the door crashes open.
+            You slide the lock from the chain, remove the boards behind and push
+            on the door. Nothing happens. You push harder, but still nothing
+            happens. You push with all of your bodyweight and the door crashes
+            open, revealing a dark void in front of you.
           </p>
           <Library
             state={{
@@ -69,6 +75,7 @@ const CondemnedBuilding = ({ state }) => {
               step: state.step + 1,
               gotLibrary: state.step,
             }}
+            justEntered={true}
           />
         </>
       )}

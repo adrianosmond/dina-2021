@@ -34,7 +34,7 @@ const Street = ({ state, firstTime = false }) => {
     ...(state.gotLibrary && !state.gotBook
       ? {
           condemned: {
-            short: 'Go to library',
+            short: 'Go to the library',
             description:
               'Too curious to see what lies inside, you head for the library.',
           },

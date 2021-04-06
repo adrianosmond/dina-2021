@@ -3,16 +3,16 @@ import Choice from './Choice';
 import Heading from './Heading';
 import Street from './Street';
 
-const options = {
-  default: {
-    short: 'Leave',
-    description:
-      "You don't like the look of the locals, and would rather take your chances outside.",
-  },
-};
-
 const Bar = ({ state }) => {
   const [option, updateOption] = useChoice();
+  const options = {
+    default: {
+      short: 'Leave',
+      description:
+        "You don't like the look of the locals, and would rather take your chances outside.",
+    },
+  };
+
   return (
     <>
       <Heading step={state.step} title="The bar" />
