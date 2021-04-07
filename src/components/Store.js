@@ -7,7 +7,7 @@ const Store = ({ state, justEntered }) => {
   const [option, updateOption] = useChoice();
   const options = {
     default: {
-      short: 'Leave',
+      short: 'Leave the store',
       description:
         "You don't see anything that you need and don't have anything to say to the man, so you decide to leave.",
     },
@@ -57,9 +57,7 @@ const Store = ({ state, justEntered }) => {
         <Choice options={options} value={option} onChange={updateOption} />
       </p>
       {option === 'default' && (
-        <>
-          <Street state={{ ...state, step: state.step + 1 }} />
-        </>
+        <Street state={{ ...state, step: state.step + 1 }} />
       )}
       {option === 'askStoreWater' && (
         <>

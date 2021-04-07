@@ -2,6 +2,7 @@ import useChoice from 'hooks/useChoice';
 import Bar from './Bar';
 import Choice from './Choice';
 import CondemnedBuilding from './CondemnedBuilding';
+import GameOver from './GameOver';
 import Heading from './Heading';
 import Hotel from './Hotel';
 import Rubble from './Rubble';
@@ -31,7 +32,7 @@ const Street = ({ state, firstTime = false }) => {
           },
         }
       : {}),
-    ...(state.gotLibrary && !state.gotBook
+    ...(state.gotLibrary && !state.lostLibrary
       ? {
           condemned: {
             short: 'Go to the library',
@@ -70,7 +71,7 @@ const Street = ({ state, firstTime = false }) => {
             close your eyes. The long, endless sleep isn't far away now. You
             finally relax and give in to it.
           </p>
-          <p className="mt-6 sm:mt-8 text-center">~~~ Game over ~~~</p>
+          <GameOver />
         </>
       ) : (
         <>
@@ -103,7 +104,7 @@ const Street = ({ state, firstTime = false }) => {
                 seems like the best thing to do now. You sleep for the last
                 time. One long, never-ending dream.
               </p>
-              <p className="mt-6 sm:mt-8 text-center">~~~ Game over ~~~</p>
+              <GameOver />
             </>
           )}
           {option === 'rubble' && (

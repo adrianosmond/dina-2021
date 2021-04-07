@@ -7,30 +7,59 @@ const Hotel = ({ state, justEntered = false }) => {
   const [option, updateOption] = useChoice();
   const options = {
     default: {
-      short: 'Leave',
-      description: 'You leave. [TODO]',
+      short: 'Leave the hotel',
+      description:
+        'Not wanting to spend any more time even remotely close to the receptionist, you leave the hotel.',
     },
-    ...(!state.askedRoom
+    ...(!state.askedRoom && !state.receptionUnmanned
       ? {
           askRoom: {
             short: 'Ask for a room',
-            description: '"Can I get a room?" You ask.',
+            description: '"Can I get a room?" you ask.',
           },
         }
       : {}),
-    ...(!state.askedLeave
+    ...(!state.askedHotelWater && !state.receptionUnmanned
+      ? {
+          askHotelWater: {
+            short: 'Ask for some water',
+            description: '"Do you have any water I can have?" you ask.',
+          },
+        }
+      : {}),
+    ...(!state.askedRain
+      ? {
+          askRain: {
+            short: 'Tell her the rain is coming.',
+            description:
+              '"Have you heard the news?", you exclaim. "The rain is coming again!"',
+          },
+        }
+      : {}),
+    ...(state.askedRain && !state.askedLeave
       ? {
           askLeave: {
-            short: 'Make her leave [TODO]',
-            description: '[TODO]',
+            short: 'Lie that there are clouds on the horizon.',
+            description:
+              '"This time it\'s for real! There are even clouds on the horizon this time!", you lie as convincingly as possible.',
           },
         }
       : {}),
-    ...(state.gotHotelKey
+    ...(state.gotHotelKey && !state.enteredCloset && !state.receptionUnmanned
+      ? {
+          enterClosetFailed: {
+            short: 'Enter the maintenance closet',
+            description:
+              "You walk over to the maintenance closet, aware of the receptionist's watching eyes with every step you take.",
+          },
+        }
+      : {}),
+    ...(state.gotHotelKey && state.receptionUnmanned
       ? {
           enterCloset: {
             short: 'Enter the maintenance closet',
-            description: 'You head for the closet. [TODO]',
+            description:
+              'You seize the moment while the receptionist is gone and head straight for the maintenance closet.',
           },
         }
       : {}),
@@ -68,22 +97,27 @@ const Hotel = ({ state, justEntered = false }) => {
         <Choice options={options} value={option} onChange={updateOption} />
       </p>
       {option === 'default' && (
-        <>
-          <Street
-            state={{
-              ...state,
-              step: state.step + 1,
-              receptionUnmanned: undefined,
-            }}
-          />
-        </>
+        <Street
+          state={{
+            ...state,
+            step: state.step + 1,
+            receptionUnmanned: undefined,
+          }}
+        />
       )}
       {option === 'askRoom' && (
         <>
           <p className="mt-6 sm:mt-8">
-            "I don"t mean to cause offence", the owner says,
+            "I don"t mean to cause offence", the receptionist says,
             <br />
-            "But do you have any money?" [TODO]
+            "But do you have any money?"
+          </p>
+          <p className="mt-6 sm:mt-8">"Not exactly", you reply tentatively</p>
+          <p className="mt-6 sm:mt-8">
+            What little effort the receptionist was making to hide her disdain
+            evaporates.
+            <br />
+            "Then I'm afraid the answer is no."
           </p>
           <Hotel
             state={{
@@ -94,9 +128,54 @@ const Hotel = ({ state, justEntered = false }) => {
           />
         </>
       )}
+      {option === 'askHotelWater' && (
+        <>
+          <p className="mt-6 sm:mt-8">
+            "This is a place of business, not a charity", she replies.
+          </p>
+          <Hotel
+            state={{
+              ...state,
+              step: state.step + 1,
+              askedHotelWater: state.step,
+            }}
+          />
+        </>
+      )}
+      {option === 'askRain' && (
+        <>
+          <p className="mt-6 sm:mt-8">
+            "I've heard that one before", she replies, unimpressed. "Many times.
+            I gave up on the rain a long time ago"
+          </p>
+          <Hotel
+            state={{
+              ...state,
+              step: state.step + 1,
+              askedRain: state.step,
+            }}
+          />
+        </>
+      )}
       {option === 'askLeave' && (
         <>
-          <p className="mt-6 sm:mt-8">The woman leaves. [TODO]</p>
+          <p className="mt-6 sm:mt-8">
+            "Of course there are. I'm sure Santa is bringing them on his sleigh"
+          </p>
+          <p className="mt-6 sm:mt-8">
+            "I saw them on the horizon just before I came in. In that
+            direction.", you point towards the rear of the hotel.
+          </p>
+          <p className="mt-6 sm:mt-8">
+            The receptionist looks at you with distrust.
+            <br />
+            "All of the hotel rooms are locked and there's nothing valuable out
+            here, so don't try anything."
+          </p>
+          <p className="mt-6 sm:mt-8">
+            And with that she disappears back behind through the door where she
+            entered from.
+          </p>
           <Hotel
             state={{
               ...state,
@@ -107,18 +186,24 @@ const Hotel = ({ state, justEntered = false }) => {
           />
         </>
       )}
-      {option === 'enterCloset' && !state.receptionUnmanned && (
+      {option === 'enterClosetFailed' && (
         <>
-          <p className="mt-6 sm:mt-8">The woman stops you. [TODO]</p>
+          <p className="mt-6 sm:mt-8">
+            "Where do you think you're going?" she asks.
+          </p>
+          <p className="mt-6 sm:mt-8">
+            Scalded, you return to your original position.
+          </p>
           <Hotel
             state={{
               ...state,
               step: state.step + 1,
+              enteredCloset: state.step,
             }}
           />
         </>
       )}
-      {option === 'enterCloset' && state.receptionUnmanned && (
+      {option === 'enterCloset' && (
         <>
           <p className="mt-6 sm:mt-8">
             You try the key that you found in the door and it fits. You turn the

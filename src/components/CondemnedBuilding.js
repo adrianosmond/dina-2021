@@ -26,7 +26,7 @@ const CondemnedBuilding = ({ state }) => {
   const [option, updateOption] = useChoice();
   return (
     <>
-      <Heading step={state.step} title="The boarded building" />
+      <Heading step={state.step} title="Outside the boarded building" />
       <p className="mt-2 sm:mt-4">
         The building looks even worse from close up. The warnings if anything
         aren't strong enough. You think about removing the boards and going in
@@ -57,9 +57,7 @@ const CondemnedBuilding = ({ state }) => {
         <Choice options={options} value={option} onChange={updateOption} />
       </p>
       {option === 'default' && (
-        <>
-          <Street state={{ ...state, step: state.step + 1, padlock: code }} />
-        </>
+        <Street state={{ ...state, step: state.step + 1, padlock: code }} />
       )}
       {option === 'enter' && (
         <>

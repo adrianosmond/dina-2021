@@ -8,7 +8,7 @@ const Rubble = ({ state, justEntered = false, movement = '' }) => {
 
   const options = {
     default: {
-      short: 'Leave',
+      short: 'Leave the collapsed buildings',
       description:
         "When you're so thirsty, it doesn't really make sense to spend a lot of time digging around in rocks. You decide that the best course of action would be to head back to the street.",
     },
@@ -58,9 +58,7 @@ const Rubble = ({ state, justEntered = false, movement = '' }) => {
         <Choice options={options} value={option} onChange={updateOption} />
       </p>
       {option === 'default' && (
-        <>
-          <Street state={{ ...state, step: state.step + 1 }} />
-        </>
+        <Street state={{ ...state, step: state.step + 1 }} />
       )}
       {option === 'left' && (
         <Rubble

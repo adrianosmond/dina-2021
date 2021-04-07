@@ -1,5 +1,6 @@
 import useChoice from 'hooks/useChoice';
 import Choice from './Choice';
+import GameOver from './GameOver';
 import Heading from './Heading';
 import Street from './Street';
 
@@ -65,14 +66,26 @@ const Library = ({
       ? {
           book: {
             short: 'Grab a book',
-            description: 'You grab a book. [TODO]',
+            description:
+              'Uneasy about the how little time you have before the building collapses, you grab the closest book.',
           },
         }
       : {}),
   };
 
   if (collapseTimer > 3) {
-    return <p className="mt-6 sm:mt-8">It collapses. Game over [TODO]</p>;
+    return (
+      <>
+        <p className="mt-6 sm:mt-8">
+          Suddenly there's an almighty cracking followed by a split second of
+          silence and then the loudest sound you've ever heard. The building
+          collapses in on itself so suddenly that you don't stand a chance. The
+          silver lining is that you get swallowed by the rubble so quickly that
+          it's a painless end.
+        </p>
+        <GameOver />
+      </>
+    );
   }
 
   return (
@@ -102,10 +115,18 @@ const Library = ({
         </>
       )}
       {collapseTimer === 1 && (
-        <p className="mt-6 sm:mt-8">Some creaking [TODO]</p>
+        <p className="mt-6 sm:mt-8">
+          Now that you've stopped, you notice occasional cracking sounds coming
+          from the rafters. The small cracks of wood being put under stress. It
+          hasn't given to the pressure yet but it won't be long.
+        </p>
       )}
       {collapseTimer === 2 && (
-        <p className="mt-6 sm:mt-8">More creaking [TODO]</p>
+        <p className="mt-6 sm:mt-8">
+          A series of regular low thuds from underneath join the cracks above,
+          which are increasing in frequency. You begin to suspect that no book
+          was worth this amount of risk.
+        </p>
       )}
       {collapseTimer === 3 && (
         <p className="mt-6 sm:mt-8">Heavy creaking [TODO]</p>
@@ -115,13 +136,24 @@ const Library = ({
       </p>
       {option === 'default' && (
         <>
-          {!state.gotBook ? (
-            <p className="mt-6 sm:mt-8">You leave the library. [TODO]</p>
-          ) : (
+          <p className="mt-6 sm:mt-8">
+            You step back out on to the street when suddenly there's an almighty
+            cracking followed by a split second of silence and then the loudest
+            sound you've ever heard. The building collapses in on itself but
+            your reflexes are just fast enough to dive in the opposite
+            direction. A rock strikes you in the head and the dust from the
+            collapse covers you from head to toe.
+          </p>
+          {state.gotBook && (
             <>
               <p className="mt-6 sm:mt-8">
-                You leave the library and get a chance to look at the book.
-                [TODO]
+                After lying there for a minute wondering if you're alright, you
+                decide the best course of action is to see for yourself. The
+                rock will have left you with a nasty bruise, but luckily didn't
+                draw blood. You can move your arms and legs without pain too, so
+                all in all you got off lightly. You tentatively stand up, dust
+                yourself down and decide to take a look at the book you managed
+                to save.
               </p>
               <p className="mt-6 sm:mt-8">
                 {state.gotBook === 'art' && <>[TODO] art book</>}
@@ -132,7 +164,9 @@ const Library = ({
               </p>
             </>
           )}
-          <Street state={{ ...state, step: state.step + 1 }} />
+          <Street
+            state={{ ...state, step: state.step + 2, lostLibrary: state.step }}
+          />
         </>
       )}
       {option === 'art' && (
