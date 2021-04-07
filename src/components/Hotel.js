@@ -27,9 +27,9 @@ const Hotel = ({ state, justEntered = false }) => {
           },
         }
       : {}),
-    ...(!state.askedRain
+    ...(!state.askedHotelRain
       ? {
-          askRain: {
+          askHotelRain: {
             short: 'Tell her the rain is coming.',
             description:
               '"Have you heard the news?", you exclaim. "The rain is coming again!"',
@@ -101,7 +101,6 @@ const Hotel = ({ state, justEntered = false }) => {
           state={{
             ...state,
             step: state.step + 1,
-            receptionUnmanned: undefined,
           }}
         />
       )}
@@ -142,7 +141,7 @@ const Hotel = ({ state, justEntered = false }) => {
           />
         </>
       )}
-      {option === 'askRain' && (
+      {option === 'askHotelRain' && (
         <>
           <p className="mt-6 sm:mt-8">
             "I've heard that one before", she replies, unimpressed. "Many times.
@@ -152,7 +151,7 @@ const Hotel = ({ state, justEntered = false }) => {
             state={{
               ...state,
               step: state.step + 1,
-              askedRain: state.step,
+              askedHotelRain: state.step,
             }}
           />
         </>

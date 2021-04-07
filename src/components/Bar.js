@@ -20,6 +20,15 @@ const Bar = ({ state, justEntered = false }) => {
           },
         }
       : {}),
+    ...(!state.askedBarRain
+      ? {
+          askBarRain: {
+            short: 'Tell him the rain is coming',
+            description:
+              '"Have you heard the news?", you exclaim. "The rain is coming again!"',
+          },
+        }
+      : {}),
     ...(state.askedBarWater && !state.askedJob
       ? {
           askJob: {
@@ -37,10 +46,10 @@ const Bar = ({ state, justEntered = false }) => {
           },
         }
       : {}),
-    ...(state.askedJob && !state.askedDistil && state.gotBook === 'food'
+    ...(state.askedJob && state.gotBook === 'food'
       ? {
-          askDistil: {
-            short: 'Create a new type of alcohol',
+          showBook: {
+            short: 'Show the barman your book',
             description:
               '"Do you know how they used to make alcohol?" you ask tentatively.',
           },
@@ -121,6 +130,21 @@ const Bar = ({ state, justEntered = false }) => {
           />
         </>
       )}
+      {option === 'askBarRain' && (
+        <>
+          <p className="mt-6 sm:mt-8">
+            "Someone came in here and told me that a week ago...", replies the
+            bartender. "And yet it's still dry."
+          </p>
+          <Bar
+            state={{
+              ...state,
+              step: state.step + 1,
+              askedBarRain: state.step,
+            }}
+          />
+        </>
+      )}
       {option === 'askTrade' && (
         <>
           <p className="mt-6 sm:mt-8">
@@ -136,27 +160,36 @@ const Bar = ({ state, justEntered = false }) => {
           />
         </>
       )}
-      {option === 'askDistil' && (
+      {option === 'showBook' && (
         <>
           <p className="mt-6 sm:mt-8">
-            "No but I'm sure it used a lot of water." the barman replies
-            dismissively.
+            "No. Do you?" the barman replies, seemingly unimpressed.
           </p>
           <p className="mt-6 sm:mt-8">
-            "Sure," you persist, ignoring his tone "But they used to use plants
-            too to add to the flavours. They didn't even have to be plants that
-            necessarily tasted good on their own either, it was anything to take
-            the edge off the taste of the alcohol. Have you considered adding
-            new flavours to improve your cocktails?"
+            "I have a whole book about it here.", you say as you place 'The
+            Drunken Botanist' down on the bar. "Soon - any day now - the rain is
+            going to start again, and then you'll be able to grow plants and
+            make your own spirits. The real kind, not just repurposed old
+            medical and cleaning supplies. I'll trade you this book - with all
+            its potential - for some water. That's got to be better than a new
+            cocktail recipe. What do you say?"
           </p>
           <p className="mt-6 sm:mt-8">
-            "I don't see a lot of living stuff around here, do you?"
+            The barman pauses for a moment and looks you up and down.
+            <br />
+            "Ok, it's a deal." he says, finally.
           </p>
+          <Heading step={state.step + 10} title="The street" />
           <p className="mt-6 sm:mt-8">
-            "You're missing the point. Take gin, for example. They used bark
-            from trees in that amongst other things. I don't see why you
-            couldn't try with tumbleweed"
+            Back out on the street you have an enormous sense of relief. You
+            have enough water to last you for the next week. You can get back on
+            the trail. You close your eyes, tilt your head back and inhale
+            deeply. At the exact moment that you exhale there's a distant
+            rumble. Shocked, you open your eyes and look past the bar, the hotel
+            and the store in the direction of the horizon.
           </p>
+          <p className="mt-6 sm:mt-8">Black clouds.</p>
+          <p className="mt-8 sm:mt-16 text-center">~~~ The End ~~~</p>
         </>
       )}
     </>

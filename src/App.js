@@ -20,10 +20,9 @@ const App = () => (
     </p>
     <p className="mt-6 sm:mt-8">
       The optimism that you had had then was now beginning to look like it had
-      been naivety all along. Your food and water ran out two days ago and even
-      though you switched to survival mode - find water at all costs three days
-      ago you haven't seen any sign of another human except for dried up
-      footprints.
+      been naivety all along. Your water ran out two days ago and even though
+      you switched to survival mode - find water at all costs - three days ago,
+      you haven't seen any sign of another human except for dried up footprints.
     </p>
     <p className="mt-6 sm:mt-8">
       After days of walking in the scorching sun, following trails that lead to

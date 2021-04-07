@@ -19,6 +19,15 @@ const Store = ({ state, justEntered }) => {
           },
         }
       : {}),
+    ...(!state.askedStoreRain
+      ? {
+          askStoreRain: {
+            short: 'Tell him that the rain is coming',
+            description:
+              '"Have you heard the news?", you exclaim. "The rain is coming again!"',
+          },
+        }
+      : {}),
     ...(!state.askedRubble
       ? {
           askRubble: {
@@ -73,6 +82,21 @@ const Store = ({ state, justEntered }) => {
               ...state,
               step: state.step + 1,
               askedStoreWater: state.step,
+            }}
+          />
+        </>
+      )}
+      {option === 'askStoreRain' && (
+        <>
+          <p className="mt-6 sm:mt-8">
+            "I hope you're right", he says and then pauses. "But I haven't had
+            much luck with hope for a long time."
+          </p>
+          <Store
+            state={{
+              ...state,
+              step: state.step + 1,
+              askedStoreRain: state.step,
             }}
           />
         </>
