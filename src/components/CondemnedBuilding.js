@@ -44,9 +44,9 @@ const CondemnedBuilding = ({ state }) => {
       </p>
       {code === 817 ? (
         <p className="mt-6 sm:mt-8">
-          As you finish setting the third digit, you think you feel move in the
-          lock and your heart skips a beat. You pull at the top of the lock and
-          sure enough it opens.
+          As you finish setting the third digit, you think you feel movement in
+          the lock and your heart skips a beat. You pull at the top of the lock
+          and sure enough it opens.
         </p>
       ) : (
         <p className="mt-6 sm:mt-8">

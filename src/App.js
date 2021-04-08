@@ -8,7 +8,7 @@ const initialState = {
 
 const App = () => (
   <div className="p-4 sm:p-8 max-w-2xl mx-auto">
-    <h1 className="text-2xl font-bold">The traveller</h1>
+    <h1 className="text-2xl font-bold">Black Clouds</h1>
     <Heading step={-10} title="The wilderness" />
     <p className="mt-2 sm:mt-4">
       When you left the outpost 10 days ago you had been full of hope.

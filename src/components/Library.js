@@ -31,7 +31,7 @@ const Library = ({
           fiction: {
             short: 'Go to the fiction section',
             description:
-              'The thought of reading getting lost in fiction rather than being faced with this reality is very tempting. You walk carefully towards the fiction section.',
+              'The thought of being lost in fiction rather than being faced with this reality is very tempting. You walk carefully towards the fiction section.',
           },
         }
       : {}),
@@ -62,10 +62,10 @@ const Library = ({
           },
         }
       : {}),
-    ...(section
+    ...(section !== state.gotBook
       ? {
           book: {
-            short: 'Grab a book',
+            short: 'Pick up a book',
             description:
               'Uneasy about the how little time you have before the building collapses, you grab the closest book.',
           },
@@ -129,7 +129,10 @@ const Library = ({
         </p>
       )}
       {collapseTimer === 3 && (
-        <p className="mt-6 sm:mt-8">Heavy creaking [TODO]</p>
+        <p className="mt-6 sm:mt-8">
+          An almighty whine comes from the back of the library. This can't be
+          good, you think to yourself
+        </p>
       )}
       <p className="mt-6 sm:mt-8">
         <Choice options={options} value={option} onChange={updateOption} />
@@ -156,11 +159,51 @@ const Library = ({
                 to save.
               </p>
               <p className="mt-6 sm:mt-8">
-                {state.gotBook === 'art' && <>[TODO] art book</>}
-                {state.gotBook === 'fiction' && <>[TODO] fiction book</>}
-                {state.gotBook === 'food' && <>[TODO] food and drink book</>}
-                {state.gotBook === 'history' && <>[TODO] history book</>}
-                {state.gotBook === 'science' && <>[TODO] science book</>}
+                {state.gotBook === 'art' && (
+                  <>
+                    "Abstract Art: A Global History" must've been quite a pretty
+                    book once. This copy is now quite tattered, but on flicking
+                    through the pages you feel moved by the life that people
+                    used to have. They didn't realise what a luxury it was to
+                    spend time creating.
+                  </>
+                )}
+                {state.gotBook === 'fiction' && (
+                  <>
+                    You read the blurb of "The Catcher in the Rye", which
+                    apparently has alienation as one of its main themes. "That's
+                    quite appropriate", you think to yourself.
+                  </>
+                )}
+                {state.gotBook === 'food' && (
+                  <>
+                    You hold a copy of "The Drunken Botanist" in your hands. It
+                    has the subtitle "The plants that create the worlds greatest
+                    drinks" and on flicking through the pages it seems like it'd
+                    be a decent guide to getting the world boozing again when
+                    things get back to normal.
+                  </>
+                )}
+                {state.gotBook === 'history' && (
+                  <>
+                    "Genghis Khan and the Making of the Modern World" wouldn't
+                    necessarily have been your initial choice for the only book
+                    to have saved from an entire library, but it's done now.
+                    '"Reads like the Iliad…Part travelogue, part epic
+                    narrative." - Washington Post' it says on the back.
+                    Hopefully that means you'll be able to kill some time with
+                    it.
+                  </>
+                )}
+                {state.gotBook === 'science' && (
+                  <>
+                    Of all the books you could've taken, you happened to pick
+                    one in a foreign language. "Une Breve Histoire du Temps du
+                    Big Bang au Trous Noirs" may've been interesting or useful
+                    in English - you'll never know, because this is
+                    unintelligible.
+                  </>
+                )}
               </p>
             </>
           )}
@@ -171,7 +214,11 @@ const Library = ({
       )}
       {option === 'art' && (
         <>
-          <p className="mt-6 sm:mt-8">The art section. [TODO]</p>
+          <p className="mt-6 sm:mt-8">
+            The art section is underwhelming. You suppose that it isn't
+            surprising that not many people decided to take books about art with
+            them when they left their homes.
+          </p>
           <Library
             state={{ ...state, step: state.step + 1 }}
             section="art"
@@ -181,7 +228,10 @@ const Library = ({
       )}
       {option === 'fiction' && (
         <>
-          <p className="mt-6 sm:mt-8">The fiction section. [TODO]</p>
+          <p className="mt-6 sm:mt-8">
+            The fiction section seems quite well stocked, though the books
+            themselves look well loved.
+          </p>
           <Library
             state={{ ...state, step: state.step + 1 }}
             section="fiction"
@@ -191,7 +241,12 @@ const Library = ({
       )}
       {option === 'food' && (
         <>
-          <p className="mt-6 sm:mt-8">The food section. [TODO]</p>
+          <p className="mt-6 sm:mt-8">
+            The food and drink section isn't quite what you expected. Rather
+            than lots of pictures of the delicious looking things that people
+            used to eat in the past there seem to be a lot more books about the
+            technical side of food and drink production.
+          </p>
           <Library
             state={{ ...state, step: state.step + 1 }}
             section="food"
@@ -201,7 +256,13 @@ const Library = ({
       )}
       {option === 'history' && (
         <>
-          <p className="mt-6 sm:mt-8">The history section. [TODO]</p>
+          <p className="mt-6 sm:mt-8">
+            You immediately wish you hadn't thought about that proverb, because
+            there's only one book there and it's about Genghis Khan. Either
+            we're doomed because we've lost all of our knowledge, or we're
+            doomed because Genghis Khan is the only example we have to learn
+            from.
+          </p>
           <Library
             state={{ ...state, step: state.step + 1 }}
             section="history"
@@ -211,7 +272,13 @@ const Library = ({
       )}
       {option === 'science' && (
         <>
-          <p className="mt-6 sm:mt-8">The science section. [TODO]</p>
+          <p className="mt-6 sm:mt-8">
+            As you run your eyes up and down the shelves, the science section
+            looks intimidating. There isn't a lot of popular science on offer
+            here. It seems to be more on the academic side of things - books
+            that people took with them in the hope that they'd be useful when
+            the rain starts again.
+          </p>
           <Library
             state={{ ...state, step: state.step + 1 }}
             section="science"
@@ -220,19 +287,11 @@ const Library = ({
         </>
       )}
       {option === 'book' && (
-        <>
-          {!state.gotBook && (
-            <p className="mt-6 sm:mt-8">You grab the closest book [TODO]</p>
-          )}
-          {state.gotBook && (
-            <p className="mt-6 sm:mt-8">You grab a second book [TODO]</p>
-          )}
-          <Library
-            state={{ ...state, step: state.step + 1, gotBook: section }}
-            section={section}
-            collapseTimer={collapseTimer + 1}
-          />
-        </>
+        <Library
+          state={{ ...state, step: state.step + 1, gotBook: section }}
+          section={section}
+          collapseTimer={collapseTimer + 1}
+        />
       )}
     </>
   );

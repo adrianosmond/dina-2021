@@ -19,7 +19,7 @@ const Street = ({ state, firstTime = false }) => {
         'Crippled by indecision you stand, frozen, yet baking in the sun.',
     },
     rubble: {
-      short: 'Explore the collapsed buildings',
+      short: 'Go to the collapsed buildings',
       description:
         'Intrigued by what might lie in the ruins of the old buildings, you head towards the pile of rubble.',
     },

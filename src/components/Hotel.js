@@ -36,7 +36,7 @@ const Hotel = ({ state, justEntered = false }) => {
           },
         }
       : {}),
-    ...(state.askedRain && !state.askedLeave
+    ...(state.askedHotelRain && !state.askedLeave
       ? {
           askLeave: {
             short: 'Lie that there are clouds on the horizon.',
