@@ -65,11 +65,11 @@ const Street = ({ state, firstTime = false }) => {
         <>
           <p className="mt-2 sm:mt-4">
             As you arrive back on the street, the heat of the midday sun really
-            hits you. Your feel despondent that you haven't managed to find
-            water so you sit down. Your legs feel much better with the weight
-            off them but now your neck wants the same respite. You lie down and
-            close your eyes. The long, endless sleep isn't far away now. You
-            finally relax and give in to it.
+            hits you. You feel despondent that you haven't managed to find water
+            so you sit down. Your legs feel much better with the weight off them
+            but now your neck wants the same respite. You lie down and close
+            your eyes. The long, endless sleep isn't far away now. You finally
+            relax and give in to it.
           </p>
           <GameOver />
         </>

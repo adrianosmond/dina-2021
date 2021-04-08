@@ -68,7 +68,7 @@ const CocktailMaker = () => {
       {ingredients.length > 4 && (
         <p className="mt-6 sm:mt-8">
           The barman raises his eyebrows. "That sounds lethal. I'm trying to
-          take help them forget their miserable existences, not kill them."
+          help them forget their miserable existences, not kill them."
         </p>
       )}
       {ingredients.length <= 2 && (

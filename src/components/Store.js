@@ -28,7 +28,7 @@ const Store = ({ state, justEntered }) => {
           },
         }
       : {}),
-    ...(!state.askedRubble
+    ...(!state.askedRubble && !state.lostLibrary
       ? {
           askRubble: {
             short: 'Ask about the collapsed buildings',
@@ -146,7 +146,7 @@ const Store = ({ state, justEntered }) => {
             "Eventually they all left. The water here started to dry up and none
             of them were as stubborn as I was. I locked up all their houses to
             protect them from scavengers in the hope that they might come back
-            some day. They never did. Then without maintenance time turned them
+            some day. They never did. Then without maintenance, time turned them
             to rubble. I should've done more to stop it from happening, but now
             all I have is this note that Sheila slipped under my door on the
             night that she left."

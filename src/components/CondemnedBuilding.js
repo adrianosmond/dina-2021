@@ -11,7 +11,7 @@ const CondemnedBuilding = ({ state }) => {
   const options = {
     default: {
       short: 'Leave the building',
-      description: 'Unsure of what to do next, you return to the street.',
+      description: 'Unsure of what to do next, turn back to the street.',
     },
     ...(code === 817
       ? {
@@ -31,10 +31,10 @@ const CondemnedBuilding = ({ state }) => {
         The building looks even worse from close up. The warnings if anything
         aren't strong enough. You think about removing the boards and going in
         but then you notice a large combination lock that's doing an effective
-        job of keeping trespassers out. You fiddle shake the lock and pull on
-        the mechanism which, as you suspected it would, confirms that it's
-        indeed locked. On the rear side of the lock there's a label with the
-        word "Library" on it.
+        job of keeping trespassers out. You shake the lock and pull on the
+        mechanism which, as you suspected it would, confirms that it's indeed
+        locked. On the rear side of the lock there's a label with the word
+        "Library" on it.
         <span className="block mt-4">
           <CombinationLock
             value={code}

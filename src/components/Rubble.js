@@ -47,10 +47,10 @@ const Rubble = ({ state, justEntered = false, movement = '' }) => {
           <p className="mt-2 sm:mt-4">
             Gingerly you stop over the remnants of what would've been a wall and
             onto a pile of fist sized rocks mixed with pieces of wood - broken
-            furniture you suspect, and fabric. You enter the collapsed
-            buildings. It's not clear how long ago these buildings collapsed but
-            it's clear that it wasn't recently. You suppose that whoever used to
-            live in them long gave up on the idea of repair.
+            furniture you suspect, and fabric. It's not obvious how long ago
+            these buildings collapsed but it's clear that it wasn't recently.
+            You suppose that whoever used to live in them long gave up on the
+            idea of repair.
           </p>
         </>
       )}
@@ -87,18 +87,12 @@ const Rubble = ({ state, justEntered = false, movement = '' }) => {
       {option === 'search' && movement === 'LDLLUR' && (
         <>
           <p className="mt-6 sm:mt-8">
-            You aren't sure why, but this time one particular rock stands out to
-            you. It's not really any different to all of the other thousands of
-            rocks but you just have a feeling about it, so it's the first one
-            that you pick up. Underneath it you find a small key.
-          </p>
-          <p className="mt-6 sm:mt-8">
             The search isn't the most effective. For every few stones that you
             clear, new ones roll down to fill the hole you created. Seeing that
-            going directly down isn't working you try a wider but shallower
+            digging directly down isn't working, you try a wider but shallower
             search. Just as you're about to give up your hand comes into contact
             with something that sharp and you recoil. Blood drips from your
-            finger
+            finger.
           </p>
           <p className="mt-6 sm:mt-8">
             Carefully you excavate further, closer to the sharp object and

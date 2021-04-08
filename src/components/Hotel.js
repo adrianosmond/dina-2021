@@ -84,7 +84,7 @@ const Hotel = ({ state, justEntered = false }) => {
           </p>
         </>
       )}
-      {justEntered && (
+      {justEntered && !state.receptionUnmanned && (
         <p className="mt-6 sm:mt-8">
           Having heard the bell, a woman comes out of the door behind the
           reception desk. She looks you up and down with what you suspect are
@@ -111,7 +111,7 @@ const Hotel = ({ state, justEntered = false }) => {
             <br />
             "But do you have any money?"
           </p>
-          <p className="mt-6 sm:mt-8">"Not exactly", you reply tentatively</p>
+          <p className="mt-6 sm:mt-8">"Not exactly", you reply tentatively.</p>
           <p className="mt-6 sm:mt-8">
             What little effort the receptionist was making to hide her disdain
             evaporates.
@@ -170,10 +170,9 @@ const Hotel = ({ state, justEntered = false }) => {
             <br />
             "All of the hotel rooms are locked and there's nothing valuable out
             here, so don't try anything."
-          </p>
-          <p className="mt-6 sm:mt-8">
-            And with that she disappears back behind through the door where she
-            entered from.
+            <br />
+            And with that she disappears back through the door where she entered
+            from and leaves you alone in the lobby.
           </p>
           <Hotel
             state={{

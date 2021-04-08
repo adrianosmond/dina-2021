@@ -94,12 +94,12 @@ const Library = ({
         <>
           <Heading step={state.step} title="The library" />
           <p className="mt-2 sm:mt-4">
-            You step over the threshold. The continuing creaking sounds which
-            you're fairly sure weren't happening before you forced the door open
-            make you begin to wonder whether it would've been possible to enter
-            less violently. You stand inside for a minute or so while your eyes
-            adjust to the black. Some signs marking the different sections of
-            the library gradually appear from the darkness:
+            You step over the threshold. The continuing creaking sounds, which
+            you're fairly sure weren't happening before you forced the door
+            open, make you begin to wonder whether it would've been possible to
+            enter less violently. You stand inside for a minute or so while your
+            eyes adjust to the black. Some signs marking the different sections
+            of the library gradually appear from the darkness:
           </p>
           <p className="mt-6 sm:mt-8">
             Art
@@ -117,21 +117,22 @@ const Library = ({
       {collapseTimer === 1 && (
         <p className="mt-6 sm:mt-8">
           Now that you've stopped, you notice occasional cracking sounds coming
-          from the rafters. The small cracks of wood being put under stress. It
-          hasn't given to the pressure yet but it won't be long.
+          from the rafters. The sound of small cracks forming as wood is being
+          put under stress. It hasn't given in to the pressure yet but it won't
+          be long.
         </p>
       )}
       {collapseTimer === 2 && (
         <p className="mt-6 sm:mt-8">
-          A series of regular low thuds from underneath join the cracks above,
-          which are increasing in frequency. You begin to suspect that no book
-          was worth this amount of risk.
+          A series of regular low thuds from down below in the foundations join
+          the cracks above, which are increasing in frequency. You begin to
+          suspect that no book was worth this amount of risk.
         </p>
       )}
       {collapseTimer === 3 && (
         <p className="mt-6 sm:mt-8">
           An almighty whine comes from the back of the library. This can't be
-          good, you think to yourself
+          good, you think to yourself.
         </p>
       )}
       <p className="mt-6 sm:mt-8">
@@ -141,22 +142,22 @@ const Library = ({
         <>
           <p className="mt-6 sm:mt-8">
             You step back out on to the street when suddenly there's an almighty
-            cracking followed by a split second of silence and then the loudest
-            sound you've ever heard. The building collapses in on itself but
-            your reflexes are just fast enough to dive in the opposite
-            direction. A rock strikes you in the head and the dust from the
-            collapse covers you from head to toe.
+            cracking sound followed by a split second of silence and then the
+            loudest sound you've ever heard. The building collapses in on itself
+            but your reflexes are just fast enough to dive in the opposite
+            direction. A rock strikes you in the back of the head and the dust
+            from the collapse covers you from head to toe.
           </p>
           {state.gotBook && (
             <>
               <p className="mt-6 sm:mt-8">
                 After lying there for a minute wondering if you're alright, you
                 decide the best course of action is to see for yourself. The
-                rock will have left you with a nasty bruise, but luckily didn't
-                draw blood. You can move your arms and legs without pain too, so
-                all in all you got off lightly. You tentatively stand up, dust
-                yourself down and decide to take a look at the book you managed
-                to save.
+                rock will have left you with a nasty bruise, but luckily it
+                didn't draw blood. You can move your arms and legs without pain
+                too, so all in all you got off lightly. You stand up
+                tentatively, dust yourself down and decide to take a look at the
+                book you managed to save.
               </p>
               <p className="mt-6 sm:mt-8">
                 {state.gotBook === 'art' && (
@@ -189,7 +190,7 @@ const Library = ({
                     "Genghis Khan and the Making of the Modern World" wouldn't
                     necessarily have been your initial choice for the only book
                     to have saved from an entire library, but it's done now.
-                    '"Reads like the Iliad…Part travelogue, part epic
+                    '"Reads like the Iliad... Part travelogue, part epic
                     narrative." - Washington Post' it says on the back.
                     Hopefully that means you'll be able to kill some time with
                     it.
@@ -230,7 +231,7 @@ const Library = ({
         <>
           <p className="mt-6 sm:mt-8">
             The fiction section seems quite well stocked, though the books
-            themselves look well loved.
+            themselves look well loved, to put it politely.
           </p>
           <Library
             state={{ ...state, step: state.step + 1 }}
@@ -258,10 +259,9 @@ const Library = ({
         <>
           <p className="mt-6 sm:mt-8">
             You immediately wish you hadn't thought about that proverb, because
-            there's only one book there and it's about Genghis Khan. Either
-            we're doomed because we've lost all of our knowledge, or we're
-            doomed because Genghis Khan is the only example we have to learn
-            from.
+            there's only one book here and it's about Genghis Khan. Either we're
+            doomed because we've lost all of our knowledge, or we're doomed
+            because Genghis Khan is the only example we have to learn from.
           </p>
           <Library
             state={{ ...state, step: state.step + 1 }}

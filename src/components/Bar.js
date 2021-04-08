@@ -69,9 +69,8 @@ const Bar = ({ state, justEntered = false }) => {
             barman sitting behind it. Behind the bar on shelves, where in times
             long past a every spirit imaginable would've been, are a wide array
             of bottles with industrial grade alcohol. Methylated sprits,
-            alcoholic hand gels and even tiny bottles of nail polish removers
-            sit together, waiting to give the livers of future clients a hard
-            time.
+            alcoholic hand gels and even tiny bottles of nail polish remover sit
+            together, waiting to give the livers of future clients a hard time.
           </p>
         </>
       )}
@@ -117,7 +116,7 @@ const Bar = ({ state, justEntered = false }) => {
             "Isn't there anything I can do?", you beg.
           </p>
           <p className="mt-6 sm:mt-8">
-            "Look I tell you what.", he says. "If you can come up with a
+            "Look, I tell you what.", he says. "If you can come up with a
             cocktail recipe that I don't already have on my menu and that I'd
             like to add to my menu I'll give you some water.".
           </p>
